@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สื่อโต้ตอบ: การถ่ายทอดลักษณะทางพันธุกรรม ม.3</title>
+<style>
+:root{--ink:#20344a;--teal:#087f8c;--teal2:#16a394;--bg:#f1f8fb;--line:#d9e6ec;--dom:#d9f6e8;--rec:#fff0cc;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#edf6ff,#f2fff8);font-family:Tahoma,"Noto Sans Thai",sans-serif;color:var(--ink);line-height:1.6}
+header{padding:28px 16px;text-align:center;color:#fff;background:linear-gradient(120deg,#183b60,#087f8c)}header h1{margin:6px 0;font-size:clamp(1.45rem,4vw,2.2rem)}header p{max-width:850px;margin:8px auto 0;color:#e5f8fb}.tag{display:inline-block;border:1px solid #ffffff70;padding:3px 12px;border-radius:30px;font-size:.9rem}
+main{max-width:1100px;margin:20px auto;padding:0 15px 36px;display:grid;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 24px #183b600b}
+h2{font-size:1.25rem;color:#183b60;margin:0 0 12px}h3{font-size:1rem;margin:0 0 8px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.obj{padding:12px;background:#f0fbf8;border-left:4px solid var(--teal2);border-radius:10px}
+.lab{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(320px,1.2fr);gap:16px}.control{padding:14px;border:1px solid var(--line);border-radius:13px;background:#f8fbfd;margin-bottom:12px}
+label.rangehead{display:flex;justify-content:space-between;gap:8px;font-weight:bold}input[type=range]{width:100%;accent-color:var(--teal);margin:10px 0 0;cursor:pointer}.hint,.note{color:#5d7283;font-size:.9rem;margin:5px 0}
+button{border:0;background:var(--teal);color:white;font-weight:bold;border-radius:10px;padding:10px 14px;cursor:pointer}button:hover{filter:brightness(.95)}button.alt{background:#e8f0f5;color:#183b60}
+.visual{border:1px solid var(--line);border-radius:14px;padding:14px;background:linear-gradient(180deg,#fbfdff,#f3fbf8)}
+#punnett{display:grid;grid-template-columns:40px repeat(2,minmax(70px,1fr));gap:7px;max-width:410px;margin:12px auto}
+.cell{min-height:60px;border:1px solid #d5e4e9;border-radius:9px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;background:#fff}.head{background:#183b60;color:white}.dominant{background:var(--dom);border-color:#8dd5b2}.recessive{background:var(--rec);border-color:#efcf7b}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat{background:#f0faf8;border-radius:11px;text-align:center;padding:9px 4px}.stat strong{display:block;color:#087f73;font-size:1.35rem}
+canvas{display:block;width:100%;height:230px}.legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:.86rem}.swatch{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px}
+.question{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}.question p{font-weight:bold;margin:0 0 8px}.question label{display:block;padding:6px 8px;border-radius:8px;cursor:pointer}.question label:hover{background:#f1f8fa}.feedback{font-weight:bold;margin-top:7px}.ok{color:#087d48}.bad{color:#ad4925}
+footer{text-align:center;color:#617789;font-size:.85rem;padding:0 12px 24px}
+@media(max-width:760px){.lab{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="tag">วิทยาศาสตร์ • ชั้นมัธยมศึกษาปีที่ 3</div>
+ <h1>🧬 การถ่ายทอดลักษณะทางพันธุกรรม</h1>
+ <p>ทดลองผสมโดยพิจารณาลักษณะเดียวที่ควบคุมด้วยแอลลีลเด่นและแอลลีลด้อย สังเกตผลจากตารางพันเนตต์และกราฟที่เปลี่ยนแบบเรียลไทม์</p>
+</header>
+<main>
+<section class="card">
+ <h2>🎯 วัตถุประสงค์การเรียนรู้</h2>
+ <div class="objectives">
+  <div class="obj"><b>ทดลอง</b><br>ปรับจีโนไทป์ของพ่อและแม่เพื่อจำลองการผสม</div>
+  <div class="obj"><b>สังเกต</b><br>ระบุจีโนไทป์ของลูกที่เป็นไปได้จากตารางพันเนตต์</div>
+  <div class="obj"><b>วิเคราะห์และอธิบาย</b><br>อธิบายโอกาสการถ่ายทอดลักษณะเด่นและลักษณะด้อยจากการผสมลักษณะเดียว</div>
+ </div>
+ <p class="note">แบบจำลองนี้ใช้ A แทนแอลลีลเด่น และ a แทนแอลลีลด้อย โดยสมมติว่ามีการข่มแบบสมบูรณ์ และพิจารณายีนเพียง 1 คู่</p>
+</section>
+<section class="card">
+ <h2>🔬 ห้องทดลอง: ปรับตัวแปรแล้วสังเกตผล</h2>
+ <div class="lab">
+  <div>
+   <div class="control">
+    <label class="rangehead" for="mother">ตัวแปร 1: จีโนไทป์ของแม่ <span id="motherValue">Aa</span></label>
+    <input id="mother" type="range" min="0" max="2" step="1" value="1" aria-label="ปรับจีโนไทป์ของแม่">
+    <p class="hint">เลื่อนเพื่อเลือก AA, Aa หรือ aa</p>
+   </div>
+   <div class="control">
+    <label class="rangehead" for="father">ตัวแปร 2: จีโนไทป์ของพ่อ <span id="fatherValue">Aa</span></label>
+    <input id="father" type="range" min="0" max="2" step="1" value="1" aria-label="ปรับจีโนไทป์ของพ่อ">
+    <p class="hint">เลื่อนเพื่อเลือก AA, Aa หรือ aa</p>
+   </div>
+   <button type="button" class="alt" id="reset">↺ เริ่มต้นใหม่</button>
+   <div class="visual" style="margin-top:12px">
+    <h3>แนวคิดสำคัญ</h3>
+    <p><b>AA</b> = พันธุ์แท้ลักษณะเด่น</p>
+    <p><b>Aa</b> = พันธุ์ทาง แสดงลักษณะเด่น</p>
+    <p><b>aa</b> = พันธุ์แท้ลักษณะด้อย</p>
+    <p class="note">เซลล์สืบพันธุ์แต่ละเซลล์มีแอลลีลของยีนคู่นี้เพียง 1 แอลลีล</p>
+   </div>
+  </div>
+  <div>
+   <div class="visual">
+    <h3 style="text-align:center">ตารางพันเนตต์ (Punnett square)</h3>
+    <div id="punnett" aria-live="polite"></div>
+    <div class="legend"><span><i class="swatch" style="background:#8dd5b2"></i>A_ แสดงลักษณะเด่น</span><span><i class="swatch" style="background:#efcf7b"></i>aa แสดงลักษณะด้อย</span></div>
+   </div>
+   <div class="stats">
+    <div class="stat">ลักษณะเด่น<strong id="dominant">75%</strong></div>
+    <div class="stat">ลักษณะด้อย<strong id="recessive">25%</strong></div>
+    <div class="stat">อัตราส่วน AA:Aa:aa<strong id="ratio" style="font-size:1rem">1:2:1</strong></div>
+   </div>
+   <div class="visual">
+    <h3>กราฟความน่าจะเป็นของลักษณะที่ปรากฏ</h3>
+    <canvas id="chart" width="640" height="270" role="img" aria-label="กราฟแท่งร้อยละของลักษณะเด่นและลักษณะด้อย"></canvas>
+    <p id="explain" class="note" aria-live="polite"></p>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="card">
+ <h2>🧠 คำถามท้ายกิจกรรม (3 ข้อ)</h2>
+ <p class="note">เลือกคำตอบ แล้วกด “ตรวจคำตอบ” เพื่อดูคะแนนและคำอธิบาย หรือกด “ดูเฉลยทั้งหมด”</p>
+ <form id="quiz">
+  <div class="question"><p>1. เมื่อนำ Aa ผสมกับ Aa โอกาสที่ลูกจะมีจีโนไทป์ aa เป็นเท่าใด?</p>
+   <label><input type="radio" name="q1" value="a"> 0%</label><label><input type="radio" name="q1" value="b"> 25%</label><label><input type="radio" name="q1" value="c"> 50%</label><div id="feedback1" class="feedback"></div>
+  </div>
+  <div class="question"><p>2. ถ้า A เป็นแอลลีลเด่นและมีการข่มแบบสมบูรณ์ จีโนไทป์ใดแสดงลักษณะด้อย?</p>
+   <label><input type="radio" name="q2" value="a"> AA เท่านั้น</label><label><input type="radio" name="q2" value="b"> AA และ Aa</label><label><input type="radio" name="q2" value="c"> aa เท่านั้น</label><div id="feedback2" class="feedback"></div>
+  </div>
+  <div class="question"><p>3. ตารางพันเนตต์ช่วยอธิบายการถ่ายทอดลักษณะทางพันธุกรรมอย่างไร?</p>
+   <label><input type="radio" name="q3" value="a"> บอกลักษณะของลูกทุกคนได้อย่างแน่นอน</label><label><input type="radio" name="q3" value="b"> แสดงจีโนไทป์และความน่าจะเป็นของลักษณะที่ลูกอาจได้รับ</label><label><input type="radio" name="q3" value="c"> ทำให้แอลลีลของพ่อแม่เปลี่ยนไป</label><div id="feedback3" class="feedback"></div>
+  </div>
+  <button type="submit">ตรวจคำตอบ</button> <button type="button" class="alt" id="answers">ดูเฉลยทั้งหมด</button> <strong id="score" aria-live="polite"></strong>
+ </form>
+</section>
+</main>
+<footer>สื่อประกอบการเรียนรู้พันธุกรรม ม.3 • ใช้งานแบบออฟไลน์ได้ • ผลที่แสดงเป็นความน่าจะเป็นตามแบบจำลอง</footer>
+<script>
+const types=["AA","Aa","aa"],mother=document.getElementById("mother"),father=document.getElementById("father");
+function gametes(g){return g==="AA"?["A","A"]:g==="aa"?["a","a"]:["A","a"]}
+function combine(a,b){return a==="a"&&b==="A"?"Aa":a==="A"&&b==="a"?"Aa":a+b}
+function update(){
+ const m=types[+mother.value],f=types[+father.value];
+ document.getElementById("motherValue").textContent=m;document.getElementById("fatherValue").textContent=f;
+ const mg=gametes(m),fg=gametes(f),kids=[],counts={"AA":0,"Aa":0,"aa":0};
+ for(let r=0;r<2;r++)for(let c=0;c<2;c++){let k=combine(mg[c],fg[r]);kids.push(k);counts[k]++}
+ const dominant=kids.filter(k=>k!=="aa").length*25,recessive=100-dominant;
+ document.getElementById("dominant").textContent=dominant+"%";document.getElementById("recessive").textContent=recessive+"%";
+ document.getElementById("ratio").textContent=counts.AA+":"+counts.Aa+":"+counts.aa;
+ const grid=document.getElementById("punnett");grid.innerHTML="";
+ let corner=document.createElement("div");corner.className="cell head";corner.textContent="×";grid.appendChild(corner);
+ mg.forEach(a=>{let el=document.createElement("div");el.className="cell head";el.textContent=a;grid.appendChild(el)});
+ fg.forEach(b=>{let row=document.createElement("div");row.className="cell head";row.textContent=b;grid.appendChild(row);mg.forEach(a=>{let k=combine(a,b),el=document.createElement("div");el.className="cell "+(k==="aa"?"recessive":"dominant");el.innerHTML=k+"<br><small>"+(k==="aa"?"ด้อย":"เด่น")+"</small>";grid.appendChild(el)})});
+ document.getElementById("explain").textContent=`แม่ ${m} × พ่อ ${f}: ลูกมีโอกาสแสดงลักษณะเด่น ${dominant}% และลักษณะด้อย ${recessive}% อัตราส่วนจีโนไทป์ AA:Aa:aa เท่ากับ ${counts.AA}:${counts.Aa}:${counts.aa} ทั้งนี้เป็นความน่าจะเป็น ไม่ใช่การรับประกันผลของลูกแต่ละคน`;
+ drawChart(dominant,recessive);
+}
+function drawChart(dom,rec){
+ const c=document.getElementById("chart"),x=c.getContext("2d"),w=c.width,h=c.height;x.clearRect(0,0,w,h);
+ const p={l:58,r:20,t:25,b:48},cw=w-p.l-p.r,ch=h-p.t-p.b;
+ x.font="16px Tahoma";x.textAlign="right";x.fillStyle="#536b7d";x.strokeStyle="#dbe7ec";
+ for(let n=0;n<=100;n+=25){let y=p.t+ch*(1-n/100);x.beginPath();x.moveTo(p.l,y);x.lineTo(w-p.r,y);x.stroke();x.fillText(n+"%",p.l-9,y+5)}
+ [{x:p.l+cw*.22,v:dom,t:"ลักษณะเด่น",col:"#16a394"},{x:p.l+cw*.62,v:rec,t:"ลักษณะด้อย",col:"#efbd4f"}].forEach(b=>{let bh=ch*b.v/100;x.fillStyle=b.col;x.beginPath();x.roundRect(b.x,p.t+ch-bh,cw*.18,bh,7);x.fill();x.fillStyle="#20344a";x.textAlign="center";x.font="bold 17px Tahoma";x.fillText(b.v+"%",b.x+cw*.09,p.t+ch-bh-8);x.font="15px Tahoma";x.fillText(b.t,b.x+cw*.09,h-15)});
+}
+mother.addEventListener("input",update);father.addEventListener("input",update);
+document.getElementById("reset").addEventListener("click",()=>{mother.value=1;father.value=1;update()});
+const keys={q1:"b",q2:"c",q3:"b"},explain={q1:"เฉลย: 25% เพราะ Aa × Aa ให้จีโนไทป์ AA, Aa, Aa และ aa อย่างละ 1 ใน 4 ช่อง",q2:"เฉลย: aa เพราะต้องมีแอลลีลด้อยทั้งสองแอลลีลจึงแสดงลักษณะด้อย",q3:"เฉลย: ตารางพันเนตต์ช่วยแสดงจีโนไทป์และความน่าจะเป็นของลักษณะที่ลูกอาจได้รับ"};
+function grade(reveal=false){let score=0,answered=0;Object.keys(keys).forEach((q,i)=>{let selected=document.querySelector(`input[name="${q}"]:checked`),el=document.getElementById("feedback"+(i+1));if(selected)answered++;if(selected&&selected.value===keys[q])score++;if(reveal||selected){el.textContent=(selected&&selected.value===keys[q]?"✓ ถูกต้อง — ":"")+explain[q];el.className="feedback "+(selected&&selected.value===keys[q]?"ok":"bad")}else el.textContent=""});document.getElementById("score").textContent=reveal?"แสดงเฉลยครบทั้ง 3 ข้อแล้ว":`คะแนน ${score}/3 (ตอบแล้ว ${answered}/3 ข้อ)`}
+document.getElementById("quiz").addEventListener("submit",e=>{e.preventDefault();grade()});document.getElementById("answers").addEventListener("click",()=>grade(true));update();
+</script>
+</body>
+</html>
